@@ -1,5 +1,52 @@
 
 .GameDetails
 {
+    width: 40em;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 
+.GameDetails-Back
+{
+    position: absolute;
+    top: 0; left: 0;
+    text-decoration: none;
+
+    color: var(--theme-text);
+
+    font-size: 2em;
+    width: 2em;
+    height: 2em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GameDetails-Header
+{
+
+}
+
+.GameDetails-Description
+{
+
+}
+
+.GameDetails-Scores
+{
+
+}
+
+.GameDetails-Play
+{
+
+}
+
+.GameDetails-NotFound
+{
+    color: red;
 }

@@ -1,5 +1,20 @@
 
 .GameListing
 {
+    cursor: pointer;
 
+    width: 90%;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.GameListing-Scores
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 0.5em;
 }

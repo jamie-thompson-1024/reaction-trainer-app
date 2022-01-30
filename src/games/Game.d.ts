@@ -13,6 +13,7 @@ interface Game
     averageScore: number;
     topScore: number;
 
+    setup();
     onClick(
         inputData: InputData);
     onKeyPress(
