@@ -6,9 +6,19 @@
     width: 90%;
     box-sizing: border-box;
 
+    border: 1px solid var(--theme-border);
+    border-radius: 10px;
+
+    padding: 0 1em 0 1em;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.GameListing:hover > .GameListing-Header
+{
+    text-decoration: underline;
 }
 
 .GameListing-Scores

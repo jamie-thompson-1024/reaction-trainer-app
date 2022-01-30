@@ -11,6 +11,7 @@
   background-color: #E8E8E8;
 
   --theme-text: #333333;
+  --theme-border: #AAAAAA;
   --theme-bg: #FFFFFF;
   --theme-width: 40em;
 }
