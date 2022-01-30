@@ -1,12 +1,14 @@
 
 .GameDetails
 {
-    width: 40em;
+    width: var(--theme-width);
     
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    
+    background-color: var(--theme-bg);
 }
 
 .GameDetails-Back

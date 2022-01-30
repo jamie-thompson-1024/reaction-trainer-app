@@ -1,10 +1,18 @@
 
 .GameList
 {
-    width: 40em;
+    width: var(--theme-width);
     
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    background-color: var(--theme-bg);
+}
+
+.GameList-Header
+{
+    border-bottom: 1px solid #888888;
+    padding-bottom: 20px;
 }

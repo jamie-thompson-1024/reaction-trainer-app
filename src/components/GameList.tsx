@@ -11,6 +11,9 @@ function GameList()
 
     return (
         <div className="GameList">
+            <h1 className="GameList-Header">
+                Reaction Time Exercises
+            </h1>
             { games.map((g, i) =>
                 <GameListing 
                     key={i}

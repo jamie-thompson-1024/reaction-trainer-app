@@ -6,8 +6,13 @@
   justify-content: center;
   
   font-family: 'Comfortaa';
+  color: var(--theme-text);
+
+  background-color: #E8E8E8;
 
   --theme-text: #333333;
+  --theme-bg: #FFFFFF;
+  --theme-width: 40em;
 }
 
 @font-face {
