@@ -142,14 +142,14 @@ class Game extends EventTarget
     {
         if(this._ctx && this._canvas)
         {
-            this.updateTick(this._inputData);
+            this.updateTick(this._inputData, this._canvas.width, this._canvas.height);
             this.renderTick(this._ctx, this._canvas.width, this._canvas.height, this._inputData);
         }
         if(this._doLoop)
             requestAnimationFrame(this.loop.bind(this));
     }
 
-    updateTick(inputData: InputData)
+    updateTick(inputData: InputData, width: number, height: number)
     {}
 
     renderTick(ctx: CanvasRenderingContext2D, width: number, height: number, inputData: InputData)
