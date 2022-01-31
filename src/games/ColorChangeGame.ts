@@ -5,6 +5,7 @@ class ColorChangeGame extends Game
     name: string = "Color Change";
     description: string = "In this exercise you must click the screen as soon as it turns red. \n The lower the score the better";
     averageScore: number = 400;
+    averageScoreTouch: number = 400;
     topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private state: undefined | 'start' | 'playing' | 'restart';

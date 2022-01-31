@@ -19,10 +19,11 @@ function GameDetails()
                 <div className="GameDetails">
                     <Link to="/" className="GameDetails-Back">{ '<' }</Link>
                     <h1 className="GameDetails-Header">{ game.name }</h1>
-                    <p className="GameDetails-Description">{ game.description }</p>
+                    <p className="GameDetails-Description" dangerouslySetInnerHTML={{__html: game.description.replaceAll('\n', '<br/>')}}></p>
                     <div className="GameDetails-Scores">
                         <p>personal best: { game.topScore === -1 ?  '~': `${game.topScore}ms`}</p>
                         <p>average score: {game.averageScore}ms</p>
+                        <p>average score mobile: {game.averageScoreTouch}ms</p>
                     </div>
                     <button 
                         className="GameDetails-Play" 

@@ -10,7 +10,7 @@ function GameListing(props: { game: Game, onClick: () => void })
             <div className="GameListing-Scores">
                 <p>p Best: { props.game.topScore === -1 ?  '~': `${props.game.topScore}ms`}</p>
                 <p>|</p>
-                <p>Avg: {props.game.averageScore}ms</p>
+                <p>Avg: {props.game.averageScore} - {props.game.averageScoreTouch}ms</p>
             </div>
         </div>
     )

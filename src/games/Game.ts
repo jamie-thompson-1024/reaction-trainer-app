@@ -13,7 +13,7 @@ class InputData extends EventTarget
     constructor()
     {
         super();
-        this.cursorPos = {x: 0, y: 0};
+        this.cursorPos = {x: window.innerWidth / 2, y: window.innerHeight / 2};
     }
 
     attachEvents()
@@ -57,6 +57,7 @@ class Game extends EventTarget
     name: string = '';
     description: string = '';
     averageScore: number = 0;
+    averageScoreTouch: number = 0;
     topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private _canvas: HTMLCanvasElement | undefined;

@@ -1,9 +1,9 @@
 import { Game, InputData } from "./Game";
 
-class OrbChaseGame extends Game
+class PickColorGame extends Game
 {
-    name: string = "Orb Chase";
-    description: string = "In this exercise you must click multi color orbs away as they appear on the screen. \n 10 orbs must be clicked before the game ends";
+    name: string = "Color Pick";
+    description: string = "In this exercise you must click the screen as soon as it turns the color listed at the top of the screen. clicking when target color not displaying will end game without score";
     averageScore: number = 800;
     averageScoreTouch: number = 500;
     topScore: number = localStorage["rta-" + this.name] ?? -1;
@@ -11,14 +11,15 @@ class OrbChaseGame extends Game
     private state: undefined | 'start' | 'playing' | 'restart';
     private exitSize: number = parseFloat(getComputedStyle(document.body).fontSize) * 3;
     private score: number = -1;
-    private backgroundColor: string = 'white';
 
-    private orbPosition: {x: number, y: number } = {x:0,y:0};
-    private orbSize: number = parseFloat(getComputedStyle(document.body).fontSize) * 2;
-    private spawnOrb: boolean = false;
-    private orbAppearTime: number = 0;
-    private orbColor: string = '';
-    private times: number[] = [];
+    private colors: string[] = [
+        'Lime', 'Yellow', 'Cyan', 'Orange', 'Magenta', 'Red'
+    ];
+    private colorInterval: number = 0;
+    private currentColor: number = 0;
+    private targetColor: number = 0;
+    private lastTime: number = 0;
+    private colorChange: boolean = false;
 
     constructor()
     { super(); }
@@ -35,8 +36,11 @@ class OrbChaseGame extends Game
     startGame()
     {
         this.state = 'playing';
-        this.spawnOrb = true;
-        this.times = [];
+        this.targetColor = Math.floor(Math.random() * this.colors.length);
+        do
+            this.currentColor = Math.floor(Math.random() * this.colors.length);
+        while(this.currentColor === this.targetColor)
+        this.colorInterval = Math.random() * 500 + 1000;
     }
 
     override onClick(inputData: InputData)
@@ -51,19 +55,16 @@ class OrbChaseGame extends Game
                     this.startGame();
                 break;
             case 'playing':
-                if(Math.sqrt((inputData.cursorPos.x-this.orbPosition.x)**2 + (inputData.cursorPos.y-this.orbPosition.y)**2) <= this.orbSize)
+                this.score = -1;
+                
+                if(this.currentColor === this.targetColor)
                 {
-                    this.spawnOrb = true;
-                    this.times.push(performance.now() - this.orbAppearTime);
-
-                    if(this.times.length === 10)
-                    {
-                        this.score = this.times.reduce((a, e) => a + e, 0) / this.times.length;
-                        if(this.score < this.topScore || this.topScore === -1)
-                            this.setHighScore(Math.round(this.score));
-                        this.state = 'restart';
-                    }
+                    this.score = performance.now() - this.lastTime;
+                    if(this.score < this.topScore || this.topScore === -1)
+                        this.setHighScore(Math.round(this.score));
                 }
+
+                this.state = 'restart';
                 break;
         }
     }
@@ -73,7 +74,7 @@ class OrbChaseGame extends Game
 
     }
     
-    override updateTick(inputData: InputData, width: number, height: number)
+    override updateTick(inputData: InputData)
     {
         switch(this.state)
         {
@@ -84,28 +85,24 @@ class OrbChaseGame extends Game
                 
                 break;
             case 'playing':
-                if(this.spawnOrb)
+                if(this.lastTime + this.colorInterval < performance.now())
                 {
-                    this.orbPosition = { 
-                        x: Math.random() * (width - this.orbSize * 2) + this.orbSize, 
-                        y: Math.random() * (height - this.orbSize * 2) + this.orbSize };
-                    
-                    this.orbColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    this.colorChange = true;
+                    this.currentColor = Math.floor(Math.random() * this.colors.length);
+                    this.colorInterval = Math.random() * 500 + 1000;
                 }
-
                 break;
         }
     }
 
     override renderTick(ctx: CanvasRenderingContext2D, width: number, height: number, inputData: InputData)
     {
-        ctx.fillStyle = this.backgroundColor;
-        ctx.fillRect(0, 0, width, height);
-
         switch(this.state)
         {
             case 'start':
             case 'restart':
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, width, height);
 
                 // exit button black on hover
                 if(inputData.cursorPos.x < this.exitSize && inputData.cursorPos.y < this.exitSize)
@@ -139,27 +136,29 @@ class OrbChaseGame extends Game
                         width / 2, height / 2 + this.exitSize);
                 }
 
-
                 break;
             case 'playing':
-                if(this.spawnOrb)
+                ctx.fillStyle = this.colors[this.currentColor];
+                ctx.fillRect(0, 0, width, height);
+
+                if(this.colorChange)
                 {
-                    this.spawnOrb = false;
-                    this.orbAppearTime = performance.now();
+                    this.colorChange = false;
+                    this.lastTime = performance.now();
                 }
 
-                ctx.fillStyle = this.orbColor;
-                ctx.beginPath();
-                ctx.moveTo(this.orbPosition.x, this.orbPosition.y);
-                ctx.ellipse(
-                    this.orbPosition.x, this.orbPosition.y,
-                    this.orbSize, this.orbSize,
-                    0, 0, Math.PI * 2);
-                ctx.fill();
+                // draw prompt
+                ctx.fillStyle = '#333333';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                ctx.font = "2em Arial";
+                ctx.fillText(
+                    this.colors[this.targetColor],
+                    width / 2, 15);
 
                 break;
         }
     }
 }
 
-export default OrbChaseGame;
+export default PickColorGame;
