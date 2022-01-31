@@ -8,10 +8,11 @@
   font-family: 'Comfortaa';
   color: var(--theme-text);
 
-  background-color: #E8E8E8;
+  background-color: var(--theme-main-bg);
 
   --theme-text: #333333;
   --theme-border: #AAAAAA;
+  --theme-main-bg: #E8E8E8;
   --theme-bg: #FFFFFF;
   --theme-width: 40em;
 }

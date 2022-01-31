@@ -1,7 +1,9 @@
 
 .GameDetails
 {
-    width: var(--theme-width);
+    max-width: var(--theme-width);
+    width: max-content;
+    padding: 0 2em 0 2em;
     
     display: flex;
     flex-direction: column;
@@ -45,7 +47,24 @@
 
 .GameDetails-Play
 {
+    width: 20em;
+    height: 3em;
 
+    font-family: inherit;
+    color: inherit;
+
+    font-size: 1em;
+
+    background-color: transparent;
+    border: 2px solid var(--theme-text);
+    border-radius: 10px;
+}
+
+.GameDetails-Play:hover
+{
+    border-color: black;
+    color: black;
+    background-color: var(--theme-main-bg);
 }
 
 .GameDetails-NotFound

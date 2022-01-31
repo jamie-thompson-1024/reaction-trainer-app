@@ -57,8 +57,7 @@ class Game extends EventTarget
     name: string = '';
     description: string = '';
     averageScore: number = 0;
-    topScore: number = localStorage["rta-" + this.name] ?? 0;
-    keys: string[] = [];
+    topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private _canvas: HTMLCanvasElement | undefined;
     private _ctx: CanvasRenderingContext2D | undefined;
@@ -84,6 +83,7 @@ class Game extends EventTarget
             Object.entries(this._evListeners).forEach(([key, listener]) => {
                 this._inputData.addEventListener(key, listener);
             });
+            window.addEventListener('resize', this.resize.bind(this));
         }
 
         this._canvas = canvas;
@@ -91,9 +91,16 @@ class Game extends EventTarget
         this.resize();
         this._setup = true;
 
+        this.start();
         this._doLoop = true;
         this.loop();
     }
+
+    start()
+    {}
+
+    end()
+    {}
 
     resize()
     {
@@ -119,10 +126,12 @@ class Game extends EventTarget
     exit()
     {
         this._doLoop = false;
+        this.end();
         this._inputData.detachEvents();
         Object.entries(this._evListeners).forEach(([key, listener]) => {
             this._inputData.removeEventListener(key, listener);
         });
+        window.removeEventListener('resize', this.resize.bind(this));
         this._setup = false;
         this.dispatchEvent(
             new Event('exit')

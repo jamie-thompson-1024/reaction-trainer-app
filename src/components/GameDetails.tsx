@@ -21,8 +21,8 @@ function GameDetails()
                     <h1 className="GameDetails-Header">{ game.name }</h1>
                     <p className="GameDetails-Description">{ game.description }</p>
                     <div className="GameDetails-Scores">
-                        <p>personal best: {game.topScore}</p>
-                        <p>average score: {game.averageScore}</p>
+                        <p>personal best: { game.topScore === -1 ?  '~': `${game.topScore}ms`}</p>
+                        <p>average score: {game.averageScore}ms</p>
                     </div>
                     <button 
                         className="GameDetails-Play" 

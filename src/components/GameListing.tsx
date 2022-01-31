@@ -8,9 +8,9 @@ function GameListing(props: { game: Game, onClick: () => void })
         <div className="GameListing" onClick={props.onClick}>
             <h2 className="GameListing-Header">{props.game.name}</h2>
             <div className="GameListing-Scores">
-                <p>High: {props.game.topScore}</p>
+                <p>p Best: { props.game.topScore === -1 ?  '~': `${props.game.topScore}ms`}</p>
                 <p>|</p>
-                <p>Avg: {props.game.averageScore}</p>
+                <p>Avg: {props.game.averageScore}ms</p>
             </div>
         </div>
     )

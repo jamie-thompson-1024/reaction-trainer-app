@@ -1,8 +1,8 @@
 import { Game } from "./Game";
-import TestGame from "./TestGame";
+import ColorChange from "./ColorChangeGame";
 
 const games : Game[] = [
-    new TestGame()
+    new ColorChange()
 ];
 
 export default games;

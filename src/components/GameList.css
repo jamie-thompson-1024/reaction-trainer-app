@@ -2,6 +2,7 @@
 .GameList
 {
     width: var(--theme-width);
+    padding: 0 2em 0 2em;
     
     display: flex;
     flex-direction: column;
