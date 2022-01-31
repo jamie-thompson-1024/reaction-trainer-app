@@ -76,6 +76,11 @@ class Game extends EventTarget
         super();
     }
 
+    resetTopScore()
+    {
+        this.setHighScore(-1);
+    }
+
     setup(canvas: HTMLCanvasElement)
     {
         if(!this._setup)

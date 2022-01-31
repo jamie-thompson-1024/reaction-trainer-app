@@ -13,6 +13,27 @@
     background-color: var(--theme-bg);
 }
 
+.GameList-WipeData
+{
+    width: 20em;
+    height: 3em;
+
+    font-family: inherit;
+    color: red;
+
+    font-size: 1em;
+
+    background-color: transparent;
+    border: 2px solid var(--theme-text);
+    border-color: red;
+    border-radius: 10px;
+}
+
+.GameList-WipeData:hover
+{
+    background-color: #FF000033;
+}
+
 .GameList-Header
 {
     border-bottom: 1px solid #888888;

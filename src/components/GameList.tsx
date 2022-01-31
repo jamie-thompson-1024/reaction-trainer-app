@@ -21,6 +21,11 @@ function GameList()
                     onClick={() => { 
                         nav({ pathname: "/game", search:"?s="+g.name }) }}/>
             )}
+            <button 
+                className="GameList-WipeData" 
+                onClick={() => { games.forEach(g => g.resetTopScore()); nav('/'); }}>
+                    Wipe Scores
+            </button>
         </div>
     )
 }
