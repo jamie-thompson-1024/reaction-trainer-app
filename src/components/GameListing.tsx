@@ -1,5 +1,5 @@
 
-import Game from '../games/Game';
+import { Game } from '../games/Game';
 import './GameListing.css';
 
 function GameListing(props: { game: Game, onClick: () => void })
@@ -8,8 +8,9 @@ function GameListing(props: { game: Game, onClick: () => void })
         <div className="GameListing" onClick={props.onClick}>
             <h2 className="GameListing-Header">{props.game.name}</h2>
             <div className="GameListing-Scores">
-                <p>{props.game.topScore}</p>
-                <p>{props.game.averageScore}</p>
+                <p>High: {props.game.topScore}</p>
+                <p>|</p>
+                <p>Avg: {props.game.averageScore}</p>
             </div>
         </div>
     )
