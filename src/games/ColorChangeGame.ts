@@ -90,7 +90,7 @@ class ColorChangeGame extends Game
         {
             case 'start':
             case 'restart':
-                ctx.fillStyle = 'lime';
+                ctx.fillStyle = '#FEFEFE';
                 ctx.fillRect(0, 0, width, height);
 
                 // exit button black on hover
@@ -133,7 +133,7 @@ class ColorChangeGame extends Game
                         this.changeTime = performance.now();
                     ctx.fillStyle = 'red';
                 } else {
-                    ctx.fillStyle = 'lime';
+                    ctx.fillStyle = '#FEFEFE';
                 }
 
                 ctx.fillRect(0, 0, width, height);
