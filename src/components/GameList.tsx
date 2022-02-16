@@ -3,7 +3,7 @@ import GameListing from './GameListing';
 import games from '../games/Games';
 
 import './GameList.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function GameList()
 {

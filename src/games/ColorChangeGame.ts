@@ -6,7 +6,6 @@ class ColorChangeGame extends Game
     description: string = "In this exercise you must click the screen as soon as it turns red. \n The lower the score the better";
     averageScore: number = 400;
     averageScoreTouch: number = 400;
-    topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private state: undefined | 'start' | 'playing' | 'restart';
     private changeTime: number = -1;
@@ -18,7 +17,10 @@ class ColorChangeGame extends Game
     private score: number = -1;
 
     constructor()
-    { super(); }
+    { 
+        super();
+        this.getHighScore(); 
+    }
     
     override start() {
         this.state = 'start';
@@ -117,7 +119,7 @@ class ColorChangeGame extends Game
                     width / 2, height / 2);
 
                 // draw score
-                if(this.score != -1)
+                if(this.score !== -1)
                 {
                     ctx.font = "2em Arial";
                     ctx.fillText(

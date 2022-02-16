@@ -58,7 +58,7 @@ class Game extends EventTarget
     description: string = '';
     averageScore: number = 0;
     averageScoreTouch: number = 0;
-    topScore: number = localStorage["rta-" + this.name] ?? -1;
+    topScore: number = 0;
 
     private _canvas: HTMLCanvasElement | undefined;
     private _ctx: CanvasRenderingContext2D | undefined;
@@ -70,11 +70,6 @@ class Game extends EventTarget
         'click': () => { this.onClick(this._inputData) },
         'key': () => { this.onKeyPress(this._inputData, this._inputData.lastKeyPress ?? '') }
     };
-
-    constructor()
-    {
-        super();
-    }
 
     resetTopScore()
     {
@@ -121,6 +116,11 @@ class Game extends EventTarget
     {
         this.topScore = score;
         localStorage["rta-" + this.name] = score;
+    }
+
+    getHighScore()
+    {
+        this.topScore = parseInt(localStorage["rta-" + this.name]) ?? -1;
     }
 
     onClick(inputData: InputData)

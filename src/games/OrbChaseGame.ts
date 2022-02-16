@@ -6,7 +6,6 @@ class OrbChaseGame extends Game
     description: string = "In this exercise you must click multi color orbs away as they appear on the screen. \n 10 orbs must be clicked before the game ends";
     averageScore: number = 800;
     averageScoreTouch: number = 500;
-    topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private state: undefined | 'start' | 'playing' | 'restart';
     private exitSize: number = parseFloat(getComputedStyle(document.body).fontSize) * 3;
@@ -21,7 +20,10 @@ class OrbChaseGame extends Game
     private times: number[] = [];
 
     constructor()
-    { super(); }
+    { 
+        super();
+        this.getHighScore();
+    }
     
     override start() {
         this.state = 'start';

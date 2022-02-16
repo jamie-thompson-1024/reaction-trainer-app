@@ -6,7 +6,6 @@ class PickColorGame extends Game
     description: string = "In this exercise you must click the screen as soon as it turns the color listed at the top of the screen. clicking when target color not displaying will end game without score";
     averageScore: number = 800;
     averageScoreTouch: number = 500;
-    topScore: number = localStorage["rta-" + this.name] ?? -1;
 
     private state: undefined | 'start' | 'playing' | 'restart';
     private exitSize: number = parseFloat(getComputedStyle(document.body).fontSize) * 3;
@@ -22,7 +21,10 @@ class PickColorGame extends Game
     private colorChange: boolean = false;
 
     constructor()
-    { super(); }
+    { 
+        super();
+        this.getHighScore();
+    }
     
     override start() {
         this.state = 'start';
