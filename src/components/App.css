@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   
-  font-family: 'Comfortaa';
+  font-family: 'Comfortaa', monospace;
   color: var(--theme-text);
 
   background-color: var(--theme-main-bg);
